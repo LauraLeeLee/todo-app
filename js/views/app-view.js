@@ -1,3 +1,4 @@
+
 /*global Backbone, jQuery, _, ENTER_KEY */
 var app = app || {};
 
@@ -70,6 +71,7 @@ var app = app || {};
 				this.$footer.hide();
 			}
 
+			//this.$el.toggleClass('priority', this.model.get('priority'));
 			this.allCheckbox.checked = !remaining;
 		},
 
@@ -90,7 +92,7 @@ var app = app || {};
 			todo.trigger('visible');
 		},
 
-		filterAll: function () {
+		 filterAll: function () {
 			app.todos.each(this.filterOne, this);
 		},
 
@@ -126,6 +128,12 @@ var app = app || {};
 					completed: completed
 				});
 			});
-		}
+		},
+		//Toggles the priority of a new item
+		/*toggleNewPriority: function(){
+			this.save({
+				priority: !this.get('priority')
+			});
+		}*/
 	});
 })(jQuery);
