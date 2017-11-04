@@ -176,8 +176,8 @@ label[for='toggle-all'] {
 
 #new-todo-priority {
 	position: absolute;
-	top: -46px;
-	left: 13px;
+	top: -51px;
+	left: 22px;
 	width: 40px;
 	text-align: center;
 	/* Mobile Safari */
@@ -189,6 +189,10 @@ label[for='toggle-all'] {
 	font-size: 28px;
 	color: #737373;
 	padding: 0 25px 7px;
+}
+
+#new-todo-priority:hover {
+	color: #d00;
 }
 
 #new-todo-priority:checked:before {
