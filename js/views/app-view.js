@@ -20,7 +20,7 @@ var app = app || {};
 
 		// Delegated events for creating new items, and clearing completed ones.
 		events: {
-			'click #new-todo-priority': 'togglePriority',
+			'click #new-todo-priority': 'toggleNewPriority',
 			'keypress #new-todo': 'createOnEnter',
 			'click #clear-completed': 'clearCompleted',
 			'click #toggle-all': 'toggleAllComplete'
@@ -64,6 +64,9 @@ var app = app || {};
 					remaining: remaining
 				}));
 
+				//?????set priority class to element if priority is true ?????
+				this.$el.toggleClass('priority', this.model.get('priority'));
+
 				this.$('#filters li a')
 					.removeClass('selected')
 					.filter('[href="#/' + (app.TodoFilter || '') + '"]')
@@ -103,7 +106,8 @@ var app = app || {};
 			return {
 				title: this.$input.val().trim(),
 				order: app.todos.nextOrder(),
-				completed: false
+				completed: false,
+				priority: false
 			};
 		},
 
@@ -122,6 +126,18 @@ var app = app || {};
 			return false;
 		},
 
+		//Toggles the priority of a title
+		toggleNewPriority: function(){
+			app.todos.save({
+				priority: !this.get('priority')
+			});
+		},
+		/*//toggles `"priority"`state of new todo
+		toggleNewPriority: function( ) {
+			this.todos.toggleNewPriority();
+
+		},*/
+
 		toggleAllComplete: function () {
 			var completed = this.allCheckbox.checked;
 
@@ -131,11 +147,6 @@ var app = app || {};
 				});
 			});
 		},
-		//Toggles the priority of a new item
-		/*toggleNewPriority: function(){
-			this.save({
-				priority: !this.get('priority')
-			});
-		}*/
+
 	});
 })(jQuery);
